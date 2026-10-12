@@ -1,38 +1,58 @@
-//MonthlyInternetUsageMonitor.cpp- calculate the remaining quota of monthly internet
+//MonthlyInternetUsageMonitor.cpp - calculate the remaining quota of monthly internet
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 double inputdataUsed();
-//read the data used for this month in GB
+// read the data used for this month in GB
 double computeRemainingQuota(double dataUsed);
-//return the remaining quota in GB
+// return the remaining quota in GB
 
 void displayResult(double RemainingQuota);
 
 int main()
 {
-	double dataUsed, RemaianingQuota;
-	//shows result
-//CALL inputdataUsed RETURNING dataUsed
-	dataUsed = inputdataUsed;
-//CALL computeRemainingQuota with dataUsed RETURNING RemainingQuota
+	double dataUsed, RemainingQuota;
+	// CALL inputdataUsed RETURNING dataUsed
+	dataUsed = inputdataUsed();
+	// CALL computeRemainingQuota with dataUsed RETURNING RemainingQuota
 	RemainingQuota = computeRemainingQuota(dataUsed);
-//CALL displayResult with RemainingQuota
+	// CALL displayResult with RemainingQuota
+	displayResult(RemainingQuota);
 
-//inputdataUsed
-//DISPLAY prompt to enter data used for this month(GB) :
-	//READ dataUsed
-	//RETURN dataUsed
+	return 0;
+}
 
-	//computeRemainingQuota with dataUsed
-	//COMPUTE RemainingQuota as 100 - dataUsed
+double inputdataUsed()
+{
+	double dataUsed;
+	// DISPLAY prompt to enter data used for this month(GB) :
+	cout << "Enter data used for this month (GB): ";
+	// READ dataUsed
+	cin >> dataUsed;
+	// RETURN dataUsed
+	return dataUsed;
+}
+
+double computeRemainingQuota(double dataUsed)
+{
+	// COMPUTE RemainingQuota as 100 - dataUsed
+	double RemainingQuota = 100 - dataUsed;
 	// RETURN RemainingQuota
+	return RemainingQuota;
+}
 
-	//displayResult(RemainingQuota)
-	//IF RemainingQuota >= 0  THEN
-	//DISPLAY Remaining Quota(GB) :
-	//ELSE
-	//DISPLAY Quota Exceeded by ABS(RemainingQuota
-		//DISPLAY WARNING : Monthly quota exceeded
-
+void displayResult(double RemainingQuota)
+{
+	// IF RemainingQuota >= 0 THEN
+	if (RemainingQuota >= 0) {
+		// DISPLAY Remaining Quota(GB) :
+		cout << "Remaining Quota (GB): " << RemainingQuota << endl;
+	} else {
+		// DISPLAY Quota Exceeded by ABS(RemainingQuota)
+		cout << "Quota Exceeded by " << fabs(RemainingQuota) << " GB" << endl;
+		// DISPLAY WARNING : Monthly quota exceeded
+		cout << "WARNING: Monthly quota exceeded!" << endl;
+	}
+}
 
